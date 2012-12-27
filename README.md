@@ -4,4 +4,4 @@ VectorFormats
 This is a library for easy serialization and deserialization of geographic
 features (geometries and properties) into various formats.
 
-For more, see the doc/ subdirectory or visit http://featureserver.org/vectorformats
+For more, see the doc/ subdirectory or visit http://featureserver.org/vectorformats.html
