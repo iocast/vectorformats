@@ -136,7 +136,7 @@ class KML(Format):
         elif len(lines):
             coordstring = lines[0].getElementsByTagName("coordinates")[0].firstChild.nodeValue.strip()
             coords = coordstring.split(" ")
-            coords = map(lambda x: x.split(","), coords)
+            coords = map(lambda x: map(float, x.split(",")), coords)
             feature.geometry = {'type': 'LineString', 'coordinates': coords}
         elif len(polys):
             rings = []
