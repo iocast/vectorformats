@@ -1,7 +1,4 @@
-*.py[cod]
-
-# C extensions
-*.so
+*.py[co]
 
 # Packages
 *.egg
@@ -15,8 +12,6 @@ var
 sdist
 develop-eggs
 .installed.cfg
-lib
-lib64
 
 # Installer logs
 pip-log.txt
@@ -24,12 +19,34 @@ pip-log.txt
 # Unit test / coverage reports
 .coverage
 .tox
-nosetests.xml
 
-# Translations
+#Translations
 *.mo
 
-# Mr Developer
+#Mr Developer
 .mr.developer.cfg
+
+#Eclipse
 .project
+.settings/
+#PyDev
 .pydevproject
+
+# osx noise
+.DS_Store
+profile
+
+# xcode 3
+*.pbxuser
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcclassmodel/
+profile
+# xcode 4
+*.xcodeproj/
+xcuserdata/
+# build products
+*.build
+DerivedData/
