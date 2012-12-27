@@ -4,10 +4,12 @@ Created on Jul 30, 2011
 @author: michel
 '''
 
-from VectorFormats.Formats.Format import Format
 import StringIO
-from struct import pack
 import types
+
+from struct import pack
+from .format import Format
+
 
 class OV2(Format):
     

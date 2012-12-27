@@ -1,7 +1,8 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
-
 import re
+
+from ..feature import Feature
+from .format import Format
+
 
 class WKT(Format):
     """Converts a single chunk of WKT to a list of 1 feature."""

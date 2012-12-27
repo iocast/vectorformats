@@ -4,9 +4,12 @@ Created on Jul 30, 2011
 @author: michel
 '''
 
-from VectorFormats.Formats.Format import Format
-from xml.sax.saxutils import escape
 import types
+
+from xml.sax.saxutils import escape
+
+from .format import Format
+
 
 class GPX(Format):
     

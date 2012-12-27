@@ -1,9 +1,8 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
-from VectorFormats.Formats.WKT import to_wkt, from_wkt
-
 import csv
 import StringIO
+
+from .format import Format
+from .wkt import to_wkt
 
 
 class CSV (Format):

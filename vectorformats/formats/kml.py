@@ -1,5 +1,5 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
+from ..feature import Feature
+from .format import Format
 
 import re
 
