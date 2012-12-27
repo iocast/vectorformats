@@ -1,5 +1,5 @@
-from vectorformats.Feature import Feature
-from vectorformats.Formats.Format import Format
+from VectorFormats.Feature import Feature
+from VectorFormats.Formats.Format import Format
 import simplejson
 try:
     import osgeo.ogr as ogr
@@ -12,7 +12,7 @@ class OGR(Format):
 
     ds = None
     driver = "Memory"
-    dsname = "vectorformats_output"
+    dsname = "VectorFormats_output"
     layername = "features"
     save_on_encode = False
     def encode(self, features, **kwargs):

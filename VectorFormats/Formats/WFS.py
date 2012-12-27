@@ -1,4 +1,4 @@
-from vectorformats.Formats.Format import Format
+from VectorFormats.Formats.Format import Format
 import re, xml.dom.minidom as m
 from lxml import etree
 from xml.sax.saxutils import escape

@@ -1,5 +1,5 @@
-from vectorformats.Feature import Feature
-from vectorformats.Formats.Format import Format
+from VectorFormats.Feature import Feature
+from VectorFormats.Formats.Format import Format
 
 try:
     from cjson import encode as json_dumps
@@ -13,7 +13,7 @@ except:
 
 class GeoJSON(Format):
     """
-    The most complete Format in vectorformats library. This class is designed
+    The most complete Format in VectorFormats library. This class is designed
     to use the fastest available JSON library to encode/decode to/from
     GeoJSON strings.
     """
