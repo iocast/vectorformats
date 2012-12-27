@@ -1,6 +1,8 @@
 from VectorFormats.Feature import Feature
 from VectorFormats.Formats.Format import Format
 
+import re
+
 
 class KML(Format):
     """KML Writer"""
@@ -125,6 +127,13 @@ class KML(Format):
 
             return actions
 
+    def split_coordinates(self, string):
+        """
+        Take a coordinates string and return a list for coordinates.
+        """
+        pattern = re.compile('\S+', re.U)
+        return pattern.findall(string)
+
     def entry_to_feature(self, placemark_dom):
         feature = Feature()
         points = placemark_dom.getElementsByTagName("Point")
@@ -135,7 +144,7 @@ class KML(Format):
             feature.geometry = {'type': 'Point', 'coordinates': map(float, coords)}
         elif len(lines):
             coordstring = lines[0].getElementsByTagName("coordinates")[0].firstChild.nodeValue.strip()
-            coords = coordstring.split(" ")
+            coords = self.split_coordinates(coordstring)
             coords = map(lambda x: map(float, x.split(",")), coords)
             feature.geometry = {'type': 'LineString', 'coordinates': coords}
         elif len(polys):
@@ -143,12 +152,13 @@ class KML(Format):
             poly = polys[0]
             outer = poly.getElementsByTagName("outerBoundaryIs")[0]
             outer_coordstring = outer.getElementsByTagName("coordinates")[0].firstChild.nodeValue.strip()
-            outer_coords = outer_coordstring.split(" ")
+            outer_coords = self.split_coordinates(outer_coordstring)
             outer_coords = map(lambda x: map(float, x.split(",")), outer_coords)
             rings.append(outer_coords)
             inners = poly.getElementsByTagName("innerBoundaryIs")
             for inner in inners:
-                inner_coords = inner.getElementsByTagName("coordinates")[0].firstChild.nodeValue.strip().split(" ")
+                inner_coordstring = inner.getElementsByTagName("coordinates")[0].firstChild.nodeValue.strip()
+                inner_coords = self.split_coordinates(inner_coordstring)
                 inner_coords = map(lambda x: map(float, x.split(",")), inner_coords)
                 rings.append(inner_coords)
 

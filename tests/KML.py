@@ -45,6 +45,15 @@ class KMLDecodeTest(unittest.TestCase):
         self.assertEqual(path.geometry['type'], 'LineString')
         self.assertEqual(path.geometry['coordinates'], [[-112.2550785337791, 36.07954952145647, 2357], [-112.2549277039738, 36.08117083492122, 2357], [-112.2552505069063, 36.08260761307279, 2357]])
 
+    def test_decode_simple_polygon(self):
+        features = self.decode("simple_polygon.kml")
+        self.assertEqual(len(features), 1)
+        polygon = features[0]
+        self.assertEqual(polygon.properties['title'], 'Simple polygon')
+        self.assertEqual(polygon.properties['description'], 'A description.')
+        self.assertEqual(polygon.geometry['type'], 'Polygon')
+        self.assertEqual(polygon.geometry['coordinates'], [[[-77.05788457660967, 38.87253259892824, 100.0], [-77.05465973756702, 38.87291016281703, 100.0], [-77.0531553685479, 38.87053267794386, 100.0], [-77.05552622493516, 38.868757801256, 100.0]]])
+
 
 if __name__ == '__main__':
     unittest.main()
