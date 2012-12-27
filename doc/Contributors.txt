@@ -1,0 +1,8 @@
+Contributors
+============
+
+The following users have contributed to the development of VectorFormats
+
+| Chsristopher Schmidt
+| Michel Ott
+| Yohan Boniface
