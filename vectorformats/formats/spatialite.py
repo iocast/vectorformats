@@ -9,7 +9,7 @@ from pyspatialite import dbapi2 as db
 from .format import Format
 from .wkt import to_wkt
 
-class SQLite(Format):
+class SpatiaLite(Format):
     
     _connection = None
     _cursor = None
