@@ -1,7 +1,7 @@
-
-from VectorFormats.Formats.Format import Format
-import StringIO
 from dxfwrite import DXFEngine as dxf
+
+from .format import Format
+
 
 class DXF(Format):
     

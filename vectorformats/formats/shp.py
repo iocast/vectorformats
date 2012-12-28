@@ -4,9 +4,12 @@ Created on May 18, 2011
 @author: michel
 '''
 
-from VectorFormats.Formats.Format import Format
-import VectorFormats.lib.shapefile as shapefile 
 import StringIO
+
+import vectorformats.lib.shapefile as shapefile 
+
+from .format import Format
+
 
 class SHP(Format):
 

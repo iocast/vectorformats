@@ -1,22 +1,24 @@
 import pickle
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
+
+from ..feature import Feature
+from .format import Format
+
 
 class Django(Format):
     """ This class is designed to decode a Django QuerySet object into
-        Feature.Vector objects. 
-        
+        Feature.Vector objects.
+
         Simply pass a query_set to the decode method, and it will return
         a list of Features.
 
         Example Usage:
-        
-        >>> from VectorFormats.Formats import Django, GeoJSON
+
+        >>> from vectorformats.formats.django import django, geojson
         >>> qs = Model.objects.filter(city="Cambridge")
-        >>> djf = Django.Django(geodjango="geometry", properties=['city', 'state'])
-        >>> geoj = GeoJSON.GeoJSON()
+        >>> djf = django.Django(geodjango="geometry", properties=['city', 'state'])
+        >>> geoj = geojson.GeoJSON()
         >>> string = geoj.encode(djf.decode(qs))
-        >>> print string 
+        >>> print string
     """
 
     geodjango = False 

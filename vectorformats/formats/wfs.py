@@ -1,7 +1,8 @@
-from VectorFormats.Formats.Format import Format
-import re, xml.dom.minidom as m
+import re
 from lxml import etree
-from xml.sax.saxutils import escape
+
+from .format import Format
+
 
 class WFS(Format):
     """WFS-like GML writer."""

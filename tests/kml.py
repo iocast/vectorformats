@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from VectorFormats.Formats.KML import KML
+from vectorformats.formats.kml import KML
 
 
 class KMLDecodeTest(unittest.TestCase):

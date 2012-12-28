@@ -22,12 +22,10 @@ setup(name='vectorformats',
       author='FeatureServer (iocast)',
       author_email='featureserver@live.com',
       url='http://featureserver.org/vectorformats.html',
-      packages=['VectorFormats',
-                'VectorFormats.Formats',
-                'VectorFormats.lib'],
+      packages=['vectorformats',
+                'vectorformats.formats',
+                'vectorformats.lib'],
       zip_safe=False,
       license="MIT",
       classifiers=classifiers
       )
-
-

@@ -1,5 +1,4 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
+from .format import Format
 
 from Cheetah.Template import Template
 
