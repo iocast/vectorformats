@@ -22,9 +22,15 @@ setup(name='vectorformats',
       author='FeatureServer (iocast)',
       author_email='featureserver@live.com',
       url='http://featureserver.org/vectorformats.html',
+      
       packages=['vectorformats',
                 'vectorformats.formats',
                 'vectorformats.lib'],
+      
+      install_requires=['dxfwrite>=1.2.0',
+                        'pyspatialite>=3.0.1'],
+
+      
       zip_safe=False,
       license="MIT",
       classifiers=classifiers
