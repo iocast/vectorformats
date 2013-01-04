@@ -132,6 +132,8 @@ class GPX(Format):
         self.populate_property_from_node(node, feature, "desc")
         self.populate_property_from_node(node, feature, "cmt")
         self.populate_property_from_node(node, feature, "sym")
+        self.populate_property_from_node(node, feature, "type")
+        self.populate_property_from_node(node, feature, "time")
         return feature
 
     def node_to_coordinates(self, node):
