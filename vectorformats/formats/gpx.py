@@ -137,7 +137,7 @@ class GPX(Format):
             coords.append(ele)
         return coords
 
-    def populate_property_from_node(self, node, feature, name, property=None):
+    def populate_property_from_node(self, node, feature, name):
         try:
             subnode = node.getElementsByTagName(name)[0]
         except IndexError:
