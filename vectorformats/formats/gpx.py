@@ -99,6 +99,8 @@ class GPX(Format):
         for node in doc.documentElement.childNodes:
             if node.nodeType != doc.ELEMENT_NODE:
                 continue
+            if node.nodeName not in ['wpt', 'trk']:
+                continue
             feature = self.node_to_feature(node)
             features.append(feature)
 
@@ -122,6 +124,10 @@ class GPX(Format):
                 'type': 'LineString',
                 'coordinates': coords
             }
+        else:
+            # FIXME: how to handle routes?
+            # A route is a list of *ordered* waypoints
+            raise Exception("GPX parser only handle waypoint and track")
         self.populate_property_from_node(node, feature, "name")
         self.populate_property_from_node(node, feature, "desc")
         self.populate_property_from_node(node, feature, "cmt")
