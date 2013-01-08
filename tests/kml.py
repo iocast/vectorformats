@@ -1,23 +1,11 @@
-import os
 import unittest
 
 from vectorformats.formats.kml import KML
 
+from base import BaseTest
 
-class KMLDecodeTest(unittest.TestCase):
 
-    def read_file(self, filename):
-        """
-        Process a file stored in tests/data/ and return its content.
-        """
-        current_path = os.path.dirname(os.path.realpath(__file__))
-        fixture_path = os.path.join(
-            current_path,
-            'data',
-            filename
-        )
-        f = open(fixture_path)
-        return f.read()
+class KMLDecodeTest(BaseTest):
 
     def decode(self, filename, **kwargs):
         """
