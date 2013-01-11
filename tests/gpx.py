@@ -5,7 +5,7 @@ from vectorformats.formats.gpx import GPX
 from base import BaseTest
 
 
-class GPXDecodeTest(BaseTest):
+class GPXTestCase(BaseTest):
 
     def decode(self, filename, **kwargs):
         """
@@ -33,5 +33,5 @@ class GPXDecodeTest(BaseTest):
         self.assertEqual(path.geometry['type'], 'LineString')
         self.assertEqual(path.geometry['coordinates'], [[-121.7295456, 45.4431641], [-121.7290800, 45.4428615], [-121.7279085, 45.4425697]])
 
-if __name__ == '__main__':
-    unittest.main()
+def test_suite():
+    return unittest.TestLoader().loadTestsFromTestCase(GPXTestCase)

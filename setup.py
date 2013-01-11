@@ -30,6 +30,7 @@ setup(name='vectorformats',
       install_requires=['dxfwrite>=1.2.0',
                         'pyspatialite>=3.0.1'],
 
+      test_suite = 'tests.test_suite',
       
       zip_safe=False,
       license="MIT",

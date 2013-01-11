@@ -5,7 +5,7 @@ from vectorformats.formats.kml import KML
 from base import BaseTest
 
 
-class KMLDecodeTest(BaseTest):
+class KMLTestCase(BaseTest):
 
     def decode(self, filename, **kwargs):
         """
@@ -43,5 +43,5 @@ class KMLDecodeTest(BaseTest):
         self.assertEqual(polygon.geometry['coordinates'], [[[-77.05788457660967, 38.87253259892824, 100.0], [-77.05465973756702, 38.87291016281703, 100.0], [-77.0531553685479, 38.87053267794386, 100.0], [-77.05552622493516, 38.868757801256, 100.0]]])
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_suite():
+    return unittest.TestLoader().loadTestsFromTestCase(KMLTestCase)
