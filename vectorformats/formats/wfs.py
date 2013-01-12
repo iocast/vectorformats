@@ -1,5 +1,6 @@
-from .format import Format
+import re
 
+from .format import Format
 
 class WFS(Format):
     """WFS-like GML writer."""
@@ -27,7 +28,7 @@ class WFS(Format):
         return "\n".join(results)        
     
     def encode_feature(self, feature):
-        layername = re.sub(r'\W', '_', self.layername)
+        layername = re.sub(r'\W', '_', feature.layer)
         
         attr_fields = [] 
         for key, value in feature.properties.items():           
