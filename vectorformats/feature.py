@@ -1,59 +1,50 @@
 class Feature (object):
-    """
-    >>> f = Feature(1, {"type":"Point", "coordinates": [1.0,0.0]})
-    >>> point = f.__geo_interface__
-    >>> point
-    {'type': 'Point', 'coordinates': [1.0, 0.0]}
-
-    >>> f.__geo_interface__['coordinates'][0] = 2.0 
-    >>> f.__geo_interface__
-    {'type': 'Point', 'coordinates': [2.0, 0.0]}
-    """
     
-    def __init__ (self, id = None, geometry = None, geometry_attr=None, srs=None, props = None):
-        self.id             = id
-        self.geometry       = geometry 
-        self.properties     = props or {}
-        self.bbox           = None
-        self.geometry_attr  = geometry_attr
-        self.srs            = srs
+    def __init__ (self, layer = None, id = None, geometry = None, geometry_attr=None, srs=None, props = None):
+        self._layer          = layer
+        self._id             = id
+        self._geometry       = geometry
+        self._geometry_attr  = geometry_attr
+        self._srs            = srs
+        self._properties     = props or {}
     
-    def get_geo(self):
-        return self.geometry
+    @property
+    def layer(self):
+        return self._layer
+    @property
+    def id(self):
+        return self._id
     
-    def set_geo(self, geom):
-        self.geometry = geom
+    @property
+    def geometry(self):
+        return self._geometry
+    @geometry.setter
+    def geometry(self, geometry):
+        self._geometry = geometry
     
-    __geo_interface__ = property(get_geo, set_geo)
-
-    def __getitem__(self, key):
-        if key == "geometry":
-            return self.geometry
-        elif key == "properties":
-            return self.properties
-        elif key == "id":
-            return self.id
-        elif key == "geometry_attr":
-            return self.geometry_attr
-        elif key == "srs":
-            return self.srs
-        raise KeyError(key)    
+    @property
+    def geometry_attribute(self):
+        return self._geometry_attr
+    @geometry_attribute.setter
+    def geometry_attribute(self, value):
+        self._geometry_attr = value
     
-    def __setitem__(self, key, value):
-        if key == "geometry":
-            self.geometry = value
-        elif key == "properties":
-            self.properties = value
-        elif key == "id":
-            self.id = value
-        elif key == "geometry_attr":
-            self.geometry_attr = value
-        elif key == "srs":
-            self.srs = value
-        else:
-            raise KeyError(key)
-        return     
+    @property
+    def srs(self):
+        return self._srs
+    @srs.setter
+    def srs(self, value):
+        self._srs = value
     
+    @property
+    def properties(self):
+        return self._properties
+    @properties.setter
+    def properties(self, properties):
+        self.properties = properties
+    
+    
+        
     def get_bbox (self):
         minx = miny = 2**31
         maxx = maxy = -2**31
@@ -84,8 +75,8 @@ class Feature (object):
             
             return (minx, miny, maxx, maxy)
         
-        except Exception, E:
-            raise Exception("Unable to determine bounding box for feature: %s. \nGeometry:\n %s" % (E, self.geometry))
+        except Exception as e:
+            raise Exception("Unable to determine bounding box for feature: %s. \nGeometry:\n %s" % (e, self.geometry))
 
     def to_dict (self):
         return {"id": self.id,
