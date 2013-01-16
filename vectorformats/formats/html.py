@@ -5,8 +5,8 @@ from Cheetah.Template import Template
 class HTML (Format):
     """Uses Cheetah to format a list of features."""
 
-    default_file = "template/default.html"
-    exception_file = "template/exception_report.html"
+    default_file = "assets/templates/default.html"
+    exception_file = "assets/templates/exception_report.html"
     """Default template file to use."""
 
     def encode(self, result, **kwargs):
