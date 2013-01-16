@@ -6,7 +6,7 @@ Created on May 18, 2011
 
 import StringIO
 
-import vectorformats.lib.shapefile as shapefile 
+import shapefile
 
 from .format import Format
 
