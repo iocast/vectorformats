@@ -23,9 +23,10 @@ setup(name='vectorformats',
       author_email='featureserver@live.com',
       url='http://featureserver.org/vectorformats.html',
       
-      packages=['vectorformats',
-                'vectorformats.formats',
-                'vectorformats.lib'],
+      #packages=['vectorformats',
+      #          'vectorformats.formats',
+      #          'vectorformats.lib'],
+      packages=find_packages(exclude=["doc", "tests"]),
       
       install_requires=['dxfwrite>=1.2.0',
                         'pyspatialite>=3.0.1'],
