@@ -44,7 +44,7 @@ class Feature (object):
         self.properties = properties
     
     
-        
+    
     def get_bbox (self):
         minx = miny = 2**31
         maxx = maxy = -2**31

@@ -1,10 +1,20 @@
+
 class Format(object):
     """Base Format class. To set properties on your subclasses, you can
        pass them as kwargs to your format constructor."""
     def __init__(self, *args, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
-            
+
+    def encode(self, features, **kwargs):
+        ''' encodes a list of features '''
+        raise NotImplementedError
+
+    def decode(self, data, **kwargs):
+        ''' decodes data to a vector format '''
+        raise NotImplementedError
+
+
     def getFormatedAttributName(self, name):
         attrib_name = name
         
