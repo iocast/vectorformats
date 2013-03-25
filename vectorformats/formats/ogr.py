@@ -1,11 +1,12 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
 import simplejson
+
+from ..feature import Feature
+from .format import Format
 try:
     import osgeo.ogr as ogr
 except ImportError:
     import ogr
-import re, xml.dom.minidom as m
+
 
 class OGR(Format):
     """OGR reading and writing."""

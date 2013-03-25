@@ -1,5 +1,5 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
+from ..feature import Feature
+from .format import Format
 
 try:
     from cjson import encode as json_dumps
@@ -10,6 +10,7 @@ except:
         from simplejson import loads as json_loads
     except Exception, E:
         raise Exception("simplejson is required for using the GeoJSON service. (Import failed: %s)" % E)
+
 
 class GeoJSON(Format):
     """

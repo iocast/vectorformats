@@ -4,11 +4,12 @@ Created on Sep 14, 2012
 @author: michel
 '''
 
-from VectorFormats.Formats.Format import Format
-from VectorFormats.Formats import WKT
 from pyspatialite import dbapi2 as db
 
-class SQLite(Format):
+from .format import Format
+from .wkt import to_wkt
+
+class SpatiaLite(Format):
     
     _connection = None
     _cursor = None
@@ -69,7 +70,7 @@ class SQLite(Format):
             else:
                 srs = 4326
         
-        wkt = "GeomFromText('" + WKT.to_wkt(feature.geometry) + "', %i)" % int(srs)
+        wkt = "GeomFromText('" + to_wkt(feature.geometry) + "', %i)" % int(srs)
         
         sql = "INSERT INTO featureserver (fid, "
         

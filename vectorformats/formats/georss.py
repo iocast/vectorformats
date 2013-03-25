@@ -1,9 +1,10 @@
-from VectorFormats.Feature import Feature
-from VectorFormats.Formats.Format import Format
+import time
 
 from datetime import datetime
-import time
-import xml.dom.minidom as m 
+
+from ..feature import Feature
+from .format import Format
+
 
 class GeoRSS(Format):
     """GeoRSS writer."""
