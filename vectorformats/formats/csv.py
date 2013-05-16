@@ -7,10 +7,10 @@ from .wkt import to_wkt
 
 class CSV (Format):
     """Encode simple features to CSV; supports only point geometries."""
-    
+
     include_id = True
 
-    def encode(self, features, props = None, fixed_props = False, **kwargs):
+    def encode(self, features, props=None, fixed_props=False, **kwargs):
         """
         >>> feat = Feature(1, {"type":"Point", "coordinates":[1,1]}, {"a":"b"})
         >>> c = CSV()
@@ -21,25 +21,25 @@ class CSV (Format):
         >>> c.encode([feat], props=["geometry","id"],fixed_props=True).replace("\\r\\n", " ")
         'geometry,id "1,1",1 '
         """
-        
+
         s = StringIO.StringIO()
         w = csv.writer(s)
-        
-        if props == None:
+
+        if props is None:
             props = []
-        
+
         if not "id" in props and self.include_id:
             props.append("id")
-        
+
         if not fixed_props:
             for feature in features:
                 for key in feature.properties.keys():
                     if not key in props:
                         props.append(key)
-        
+
         if not "geometry" in props:
             props.append("geometry")
-        
+
         w.writerow(props)
 
         for feature in features:
@@ -53,7 +53,7 @@ class CSV (Format):
                     geom = to_wkt(feature.geometry)
                     #geom = ",".join(map(str, feature.geometry['coordinates']))
                     row.append(geom)
-                elif feature.properties.has_key(key):
+                elif key in feature.properties:
                     val = feature.properties[key]
                     if isinstance(val, unicode):
                         val = val.encode("utf-8")
@@ -64,15 +64,13 @@ class CSV (Format):
         s.seek(0)
         return s
 
-
     def encode_exception_report(self, exceptionReport):
         s = StringIO.StringIO()
         w = csv.writer(s)
-        
+
         w.writerow(["exceptionCode", "locator", "layer", "ExceptionText", "ExceptionDump"])
-        
-        
+
         for exception in exceptionReport:
             w.writerow([str(exception.code), exception.locator, exception.layer, exception.message, exception.dump])
-            
+
         return s
