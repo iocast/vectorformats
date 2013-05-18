@@ -41,7 +41,7 @@ class Feature (object):
         return self._properties
     @properties.setter
     def properties(self, properties):
-        self.properties = properties
+        self._properties = properties
     
     
     
