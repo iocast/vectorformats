@@ -1,8 +1,10 @@
+from __future__ import absolute_import
 import csv
 import StringIO
 
 from .format import Format
 from .wkt import to_wkt
+from ..feature import Feature
 
 
 class CSV (Format):
@@ -74,3 +76,33 @@ class CSV (Format):
             w.writerow([str(exception.code), exception.locator, exception.layer, exception.message, exception.dump])
 
         return s
+
+    def determine_col(self, strings):
+        for idx, col in enumerate(self.first_row):
+            col = col.lower()
+            for s in strings:
+                if col.startswith(s) or col.endswith(s):
+                    return idx
+        return None
+
+    def decode(self, data):
+        features = []
+        reader = csv.reader(data.split('\n'), delimiter=",")
+        for idx, row in enumerate(reader):
+            if not row:
+                continue
+            if idx == 0:
+                self.first_row = row
+                # Determine cols name
+                latitude_index = self.determine_col(['lat', 'latitude', ])
+                longitude_index = self.determine_col(['long', 'lng', 'longitude', ])
+                if latitude_index is None or longitude_index is None:
+                    break
+            else:
+                feature = Feature()
+                lat = float(row[latitude_index])
+                lng = float(row[longitude_index])
+                feature.geometry = {'type': 'Point', 'coordinates': [lng, lat]}
+                feature.properties.update(dict(zip(self.first_row, row)))
+                features.append(feature)
+        return features
