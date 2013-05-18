@@ -1,7 +1,7 @@
 class Feature (object):
 
-    def __init__(self, layer=None, id=None, geometry=None, geometry_attr=None, srs=None,
-                 props=None):
+    def __init__(self, id=None, geometry=None, geometry_attr=None, srs=None,
+                 props=None, layer=None):
         self._layer = layer
         self._id = id
         self._geometry = geometry
