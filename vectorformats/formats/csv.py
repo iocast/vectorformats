@@ -95,7 +95,7 @@ class CSV (Format):
                 self.first_row = row
                 # Determine cols name
                 latitude_index = self.determine_col(['lat', 'latitude', ])
-                longitude_index = self.determine_col(['long', 'lng', 'longitude', ])
+                longitude_index = self.determine_col(['lon', 'lng', 'longitude', ])
                 if latitude_index is None or longitude_index is None:
                     break
             else:
