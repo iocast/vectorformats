@@ -33,5 +33,15 @@ class GPXTestCase(BaseTest):
         self.assertEqual(path.geometry['type'], 'LineString')
         self.assertEqual(path.geometry['coordinates'], [[-121.7295456, 45.4431641], [-121.7290800, 45.4428615], [-121.7279085, 45.4425697]])
 
+    def test_decode_simple_point_with_empty_field(self):
+        features = self.decode("empty_field.gpx")
+        self.assertEqual(len(features), 1)
+        point = features[0]
+        self.assertNotIn('name', point.properties)
+        self.assertEqual(point.properties['desc'], 'Simple description')
+        self.assertEqual(point.geometry['type'], 'Point')
+        self.assertEqual(point.geometry['coordinates'], [-121.72904, 45.44283, 1374.0])
+
+
 def test_suite():
     return unittest.TestLoader().loadTestsFromTestCase(GPXTestCase)

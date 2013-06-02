@@ -151,4 +151,5 @@ class GPX(Format):
         except IndexError:
             pass
         else:
-            feature.properties[name] = subnode.firstChild.nodeValue
+            if subnode.firstChild:  # text node
+                feature.properties[name] = subnode.firstChild.nodeValue
