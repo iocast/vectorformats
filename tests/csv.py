@@ -18,6 +18,7 @@ class CSVTestCase(BaseTest):
     def test_simple_load(self):
         features = self.decode('point_list.csv')
         point = features[0]
+        self.assertEqual(len(features), 4)  # one is invalid, so not imported
         self.assertEqual(point.geometry['type'], 'Point')
         self.assertEqual(point.geometry['coordinates'], [-124.401, 40.576])
         self.assertEqual(point.properties['Magnitude'], '1.5')

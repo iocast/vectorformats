@@ -100,8 +100,11 @@ class CSV (Format):
                     break
             else:
                 feature = Feature()
-                lat = float(row[latitude_index])
-                lng = float(row[longitude_index])
+                try:
+                    lat = float(row[latitude_index])
+                    lng = float(row[longitude_index])
+                except (IndexError, ValueError):
+                    continue
                 feature.geometry = {'type': 'Point', 'coordinates': [lng, lat]}
                 feature.properties.update(dict(zip(self.first_row, row)))
                 features.append(feature)
