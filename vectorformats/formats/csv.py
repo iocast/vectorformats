@@ -87,7 +87,8 @@ class CSV (Format):
 
     def decode(self, data):
         features = []
-        reader = csv.reader(data.split('\n'), delimiter=",")
+        dialect = csv.Sniffer().sniff(data)
+        reader = csv.reader(data.split('\n'), dialect)
         for idx, row in enumerate(reader):
             if not row:
                 continue

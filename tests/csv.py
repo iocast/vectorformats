@@ -22,6 +22,20 @@ class CSVTestCase(BaseTest):
         self.assertEqual(point.geometry['coordinates'], [-124.401, 40.576])
         self.assertEqual(point.properties['Magnitude'], '1.5')
 
+    def test_tab_separated_values(self):
+        features = self.decode('point_list.tsv')
+        point = features[0]
+        self.assertEqual(point.geometry['type'], 'Point')
+        self.assertEqual(point.geometry['coordinates'], [-124.401, 40.576])
+        self.assertEqual(point.properties['col1'], 'blah')
+
+    def test_semi_colon_separated_values(self):
+        features = self.decode('point_list.scsv')
+        point = features[0]
+        self.assertEqual(point.geometry['type'], 'Point')
+        self.assertEqual(point.geometry['coordinates'], [-124.401, 40.576])
+        self.assertEqual(point.properties['col1'], 'blah')
+
 
 def test_suite():
     return unittest.TestLoader().loadTestsFromTestCase(CSVTestCase)
