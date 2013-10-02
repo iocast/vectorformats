@@ -1,8 +1,9 @@
 import unittest
+from ..base import BaseTest
 
 from vectorformats.formats.wkt import from_wkt, to_wkt
 
-class WKTTestCase(unittest.TestCase):
+class WKTTestCase(BaseTest):
 
     def test_from_wkt_multipoint(self):
         wkt = 'MULTIPOINT (1.0000000000000000 2.0000000000000000, 2.0000000000000000 3.0000000000000000)'

@@ -1,9 +1,6 @@
 from unittest import TestSuite
 
-import wkt
-import kml
-import gpx
-import csv
+from .formats import wkt, kml, gpx, csv
 
 
 def test_suite():
