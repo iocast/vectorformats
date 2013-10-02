@@ -1,5 +1,5 @@
 import unittest
-from ..base import BaseTest
+from .base import BaseTest
 
 from vectorformats.formats.wkt import from_wkt, to_wkt
 

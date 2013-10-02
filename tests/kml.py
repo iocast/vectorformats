@@ -2,7 +2,7 @@ import unittest
 
 from vectorformats.formats.kml import KML
 
-from ..base import BaseTest
+from .base import BaseTest
 
 
 class KMLTestCase(BaseTest):

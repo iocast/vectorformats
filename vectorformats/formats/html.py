@@ -1,28 +1,19 @@
+import os
+
 from .format import Format
 
-from Cheetah.Template import Template
+from mako.template import Template
 
 class HTML (Format):
-    """Uses Cheetah to format a list of features."""
-
-    default_file = "assets/templates/default.html"
-    exception_file = "assets/templates/exception_report.html"
+    """Uses Mako to format a list of features."""
+    
+    default_file = os.path.join(os.path.dirname(__file__), "../assets/templates/default.html")
+    exception_file = os.path.join(os.path.dirname(__file__), "../assets/templates/exception_report.html")
     """Default template file to use."""
 
     def encode(self, result, **kwargs):
-        template = self.template(self.default_file)
-
-        output = Template(template, searchList = [{'features':result, 'datasource':self.datasource.name}, self])
-        
+        output = Template(filename=self.default_file).render(searchList = [{'features':result, 'datasource':self.datasource.name}, self])
         return str(output)
 
-    def encode_exception_report(self, exceptionReport):
-        template = self.template(self.exception_file)
-        
-        output = Template(template, searchList = [{'exception_report':exceptionReport}, self])
-        
-        return str(output)
-    
-    
-    def template(self, template_file):
-        return file(template_file).read()
+    def encode_exception_report(self, exceptionReport, *args, **kwargs):
+        return Template(filename=self.exception_file).render(exception_report=exceptionReport)

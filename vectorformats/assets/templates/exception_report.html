@@ -13,15 +13,15 @@
             </tr>
         </thead>
         <tbody>
-#for $exception in $exception_report
+    % for exception in exception_report:
             <tr>
-                <td>$str(exception.code).encode('utf-8')</td>
-                <td>$exception.locator.encode('utf-8')</td>
-                <td>$exception.layer.encode('utf-8')</td>
-                <td>$exception.message.encode('utf-8')</td>
-                <td>$exception.dump.encode('utf-8')</td>
+                <td>${exception.code}</td>
+                <td>${exception.locator}</td>
+                <td>${exception.layer}</td>
+                <td>${exception.message}</td>
+                <td>${exception.dump}</td>
             </tr>
-#end for
+    % endfor
         </tbody>
 
     </table>

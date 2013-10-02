@@ -27,12 +27,13 @@ setup(name='vectorformats',
       #          'vectorformats.formats',
       #          'vectorformats.lib'],
       packages=find_packages(exclude=["doc", "tests"]),
+      include_package_data=True,
       
       install_requires=['dxfwrite>=1.2.0',
                         'simplejson>=2.6.2',
                         'pyspatialite>=3.0.1',
                         'pyshp>=1.1.4',
-                        'Cheetah>=2.4.4'],
+                        'mako>=0.9.0'],
 
       test_suite = 'tests.test_suite',
       

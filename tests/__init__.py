@@ -1,7 +1,6 @@
 from unittest import TestSuite
 
-from .formats import wkt, kml, gpx, csv
-
+import wkt, kml, gpx, csv, html
 
 def test_suite():
     suite = TestSuite()
@@ -9,4 +8,5 @@ def test_suite():
     suite.addTest(kml.test_suite())
     suite.addTest(gpx.test_suite())
     suite.addTest(csv.test_suite())
+    suite.addTest(html.test_suite())
     return suite

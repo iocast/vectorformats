@@ -2,7 +2,7 @@ import unittest
 
 from vectorformats.formats.gpx import GPX
 
-from ..base import BaseTest
+from .base import BaseTest
 
 
 class GPXTestCase(BaseTest):

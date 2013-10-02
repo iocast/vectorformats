@@ -2,7 +2,7 @@ import unittest
 
 from vectorformats.formats.csv import CSV
 
-from ..base import BaseTest
+from .base import BaseTest
 
 
 class CSVTestCase(BaseTest):
