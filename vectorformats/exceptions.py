@@ -19,6 +19,10 @@ class ExceptionReport(object):
     def add(self, exception):
         self.exceptions.append(exception)
     
+    def clear(self):
+        self.index = 0
+        self.exceptions = []
+    
     def __len__(self):
         return len(self.exceptions)
     
