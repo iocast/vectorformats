@@ -13,17 +13,6 @@ class CSV (Format):
     include_id = True
 
     def encode(self, features, props=None, fixed_props=False, **kwargs):
-        """
-        >>> feat = Feature(1, {"type":"Point", "coordinates":[1,1]}, {"a":"b"})
-        >>> c = CSV()
-        >>> c.encode([feat]).replace("\\r\\n", " ")
-        'id,a,geometry 1,b,"1,1" '
-        >>> c.encode([feat], ["geometry","a","b","id"]).replace("\\r\\n", " ")
-        'geometry,a,b,id "1,1",b,,1 '
-        >>> c.encode([feat], props=["geometry","id"],fixed_props=True).replace("\\r\\n", " ")
-        'geometry,id "1,1",1 '
-        """
-
         s = StringIO.StringIO()
         w = csv.writer(s)
 
@@ -66,7 +55,7 @@ class CSV (Format):
         s.seek(0)
         return s
 
-    def encode_exception_report(self, exceptionReport):
+    def encode_exception_report(self, exceptionReport, **kwargs):
         s = StringIO.StringIO()
         w = csv.writer(s)
 

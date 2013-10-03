@@ -36,8 +36,8 @@ class ExceptionReport(object):
     def get(self, index):
         return self.exceptions[index]
 
-    def encode_exception_report(self, *args, **kwargs):
-        return self.format.encode_exception_report(self, args, kwargs)
+    def encode_exception_report(self, **kwargs):
+        return self.format.encode_exception_report(self, **kwargs)
 
 
 

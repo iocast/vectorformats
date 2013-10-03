@@ -1,6 +1,7 @@
 import unittest
 
 from vectorformats.formats.csv import CSV
+from vectorformats.feature import Feature
 
 from .base import BaseTest
 
@@ -36,6 +37,14 @@ class CSVTestCase(BaseTest):
         self.assertEqual(point.geometry['type'], 'Point')
         self.assertEqual(point.geometry['coordinates'], [-124.401, 40.576])
         self.assertEqual(point.properties['col1'], 'blah')
+
+
+    def test_encode(self):
+        feat = Feature(1, {"type":"Point", "coordinates":[1,1]}, {"a":"b"})
+        c = CSV()
+        self.assertEqual('id,geometry 1,POINT(1.000000 1.000000) ', c.encode([feat]).getvalue().replace("\r\n", " "))
+        self.assertEqual('geometry,a,b,id POINT(1.000000 1.000000),,,1 ', c.encode([feat], ["geometry","a","b","id"]).getvalue().replace("\r\n", " "))
+        self.assertEqual('geometry,id POINT(1.000000 1.000000),1 ', c.encode([feat], props=["geometry","id"],fixed_props=True).getvalue().replace("\r\n", " "))
 
 
 def test_suite():

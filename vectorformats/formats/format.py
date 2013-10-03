@@ -8,11 +8,15 @@ class Format(object):
 
     def encode(self, features, **kwargs):
         ''' encodes a list of features '''
-        raise NotImplementedError
+        raise NotImplementedError("Not implemented")
+    
+    def encode_exception_report(self, exception_report, **kwargs):
+        ''' encoding a exception report '''
+        raise NotImplementedError("Not implemented")
 
     def decode(self, data, **kwargs):
         ''' decodes data to a vector format '''
-        raise NotImplementedError
+        raise NotImplementedError("Not implemented")
 
 
     def getFormatedAttributName(self, name):
