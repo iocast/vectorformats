@@ -30,7 +30,7 @@ class GeoJSON(Format):
         return feature 
         
     
-    def encode(self, features, to_string=True, **kwargs):
+    def encode(self, features, to_string=True, bbox=False, **kwargs):
         """
         Encode a list of features to a JSON object or string.
 
@@ -39,7 +39,18 @@ class GeoJSON(Format):
         """
         results = []
         result_data = None
+        minx = miny = 2**31
+        maxx = maxy = -2**31
         for feature in features:
+            fminx, fminy, fmaxx, fmaxy = feature.get_bbox()
+            if fminx < minx:
+                minx = fminx
+            if fminy < miny:
+                miny = fminy
+            if fmaxx > maxx:
+                maxx = fmaxx
+            if fmaxy > maxy:
+                maxy = fmaxy
             data = self.encode_feature(feature)
             for key,value in data['properties'].items():
                 if value and isinstance(value, str): 
@@ -51,6 +62,8 @@ class GeoJSON(Format):
                        'features': results,
                        'crs': self.crs
                       }
+        if bbox:
+            result_data['bbox'] = [minx, miny, maxx, maxy]
         
         if to_string:
             result = json_dumps(result_data) 
