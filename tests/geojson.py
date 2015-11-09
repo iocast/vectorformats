@@ -32,5 +32,19 @@ class GeoJSONTestCase(BaseTest):
         polygon = features[2]
         self.assertEqual(polygon.geometry['type'], 'Polygon')
 
+    def test_encode(self):
+        content = self.read_file('collection.json')
+        geojson = GeoJSON()
+        features = geojson.decode(content)
+        data = GeoJSON.encode(geojson, features, to_string=False, bbox=True)
+        self.assertEqual(data['type'], 'FeatureCollection')
+
+    def test_bbox(self):
+        content = self.read_file('collection.json')
+        geojson = GeoJSON()
+        features = geojson.decode(content)
+        data = GeoJSON.encode(geojson, features, to_string=False, bbox=True)
+        self.assertEqual(data['bbox'], [100.0, 0.0, 105.0, 1.0])
+
 def test_suite():
     return unittest.TestLoader().loadTestsFromTestCase(GeoJSONTestCase)
